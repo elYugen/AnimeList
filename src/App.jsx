@@ -6,7 +6,7 @@ import './assets/css/styles.css'
 
 function App() {
   // Titre de la page
-  document.title = "Mon nouveau titre";
+  document.title = "AnimeList";
 
   return (
     <BrowserRouter>
