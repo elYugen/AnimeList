@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+body {
+    background-color: #1b1e26;
+    color: white;
+    font-family: Raleway;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    gap: 10px;
+    padding-bottom: 60px;
+}
+
+/* Barre de scroll */
+/* Pour les navigateurs basés sur WebKit (comme Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 12px; /* Largeur de la barre de défilement */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #1b1e26; /* Couleur de fond */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #3a3f50; /* Couleur de la barre de défilement, plus clair */
+    border-radius: 6px; /* Coins arrondis */
+    border: 2px solid #1b1e26; /* Pour créer un peu d'espace autour de la barre */
+  }
+  
+  /* Pour Firefox */
+  * {
+    scrollbar-width: thin; /* Barre de défilement plus fine */
+    scrollbar-color: #3a3f50 #1b1e26; /* Couleur de la barre et de la piste */
+  }
+  

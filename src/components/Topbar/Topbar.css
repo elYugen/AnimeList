@@ -1,0 +1,45 @@
+.topbar {
+  display: flex;
+  flex-direction: row;   
+  margin: 15px;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 10;
+}
+
+.topbarYou {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.topbarYou p {
+  font-size: 16px;
+}
+
+.topbarLogo {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;  
+  display: flex;
+}
+
+.topbarPicture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;  
+  background-color: #2d3240;
+  font-size: 24px;
+  color: #2eaebf;
+  box-shadow: 0 0 18px 1px rgba(46, 174, 191, 0.2);
+}
