@@ -11,9 +11,9 @@ function Topbar() {
         </div>
         <h3>What To See Now</h3>
       </div>
-    <div className="topbarPicture">
-        <i className="bi bi-person"></i>
-    </div>
+      <div className="topbarPicture">
+        <i class="bi bi-bell"></i>
+      </div>
     </div>
     </>
   );
