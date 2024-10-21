@@ -27,7 +27,7 @@ function ToSee() {
                 <img src={anime.image} alt={anime.name} />
               </div>
               <div className="inProgressTitle">
-                <p>{anime.name.length > 15 ? `${anime.name.slice(0, 15)}...` : anime.name}</p>
+                <p>{anime.name.length > 17 ? `${anime.name.slice(0, 17)}...` : anime.name}</p>
               </div>
             </div>
           ))
