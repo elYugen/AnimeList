@@ -1,3 +1,32 @@
-.AnimeInProgress {
-    /* Ajouter le css ici */
-  }
+.anime-item {
+  display: flex;
+  margin-bottom: 20px;
+  background-color: #2d3240;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.anime-image {
+  width: 100px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.anime-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.anime-details h3 {
+  margin: 0 0 10px 0;
+}
+
+.anime-details label {
+  margin-right: 10px;
+}
+
+.anime-choice {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

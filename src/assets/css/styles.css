@@ -17,6 +17,25 @@ a {
     color: white;
 }
 
+select {
+  background-color: #1b1e26;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #2e2e2e;
+  font-size: 16px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+select:focus {
+    outline: none;
+    border-color: rgba(46, 174, 191, 0.2);
+    box-shadow: 0 0 0 3px rgba(46, 174, 191, 0.1);
+  }
+
 .container {
     display: flex;
     flex-direction: column;

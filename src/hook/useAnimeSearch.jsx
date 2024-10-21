@@ -5,7 +5,6 @@ const useAnimeSearch = (query) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Débounce : attente avant d'envoyer la requête
   useEffect(() => {
     if (!query) {
       setResults([]);
@@ -21,7 +20,15 @@ const useAnimeSearch = (query) => {
             throw new Error('Trop de requête');
           }
           const data = await response.json();
-          setResults(data.data);
+          console.log(data);
+          const formattedResults = data.data.map(anime => ({
+            title: anime.title,
+            image: anime.images && anime.images.jpg ? anime.images.jpg.image_url : null,
+            episodes: anime.episodes || 1, 
+            seasons: anime.seasons || 1, 
+            mal_id: anime.mal_id 
+          }));
+          setResults(formattedResults);
         } catch (err) {
           setError(err.message);
         } finally {
@@ -30,9 +37,9 @@ const useAnimeSearch = (query) => {
       };
 
       fetchData();
-    }, 500); // 500ms avant d'envoyer la requête
+    }, 500);
 
-    return () => clearTimeout(delayDebounceFn); // Nettoyer le timeout si query change
+    return () => clearTimeout(delayDebounceFn);
   }, [query]);
 
   return { results, loading, error };

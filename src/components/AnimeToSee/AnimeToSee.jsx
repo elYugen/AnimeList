@@ -10,14 +10,12 @@ function AnimeToSee() {
     setAnimesToSee(storedAnimes);
   };
 
-  // Charger les animes lors du montage
   useEffect(() => {
     loadAnimesFromStorage();
   }, []);
 
-  // Fonction pour être appelée après l'ajout d'un anime
   const handleAnimeAdded = () => {
-    loadAnimesFromStorage(); // Recharge la liste depuis le localStorage
+    loadAnimesFromStorage();
   };
 
   const handleRemoveAnime = (name) => {
@@ -27,14 +25,47 @@ function AnimeToSee() {
   };
 
   const handleMarkAsSeen = (anime) => {
-    // Ajouter l'anime à AnimesWatched
     const watchedAnimes = JSON.parse(localStorage.getItem('AnimesWatched')) || [];
     localStorage.setItem('AnimesWatched', JSON.stringify([...watchedAnimes, anime]));
 
-    // Supprimer l'anime de AnimesToSee
     handleRemoveAnime(anime.name);
   };
+
+  const handleMoveToInProgress = async (anime) => {
+    console.log("Anime à déplacer:", anime);
   
+    try {
+      const response = await fetch(`https://api.jikan.moe/v4/anime/${anime.mal_id}`);
+      
+      if (!response.ok) {
+        throw new Error(`Erreur HTTP: ${response.status}`);
+      }
+  
+      const data = await response.json();
+  
+      console.log("Données récupérées de l'API:", data);
+  
+      const newAnime = {
+        mal_id: anime.mal_id,
+        name: anime.title || data.data.title, 
+        image: data.data.images.jpg.image_url || 'default-image-url.jpg',
+        total_episodes: data.data.episodes || 0,
+        season: '', 
+        episode: '1', 
+      };
+  
+
+      const inProgressAnimes = JSON.parse(localStorage.getItem('AnimesInProgress')) || [];
+      localStorage.setItem('AnimesInProgress', JSON.stringify([...inProgressAnimes, newAnime]));
+  
+
+      handleRemoveAnime(anime.name);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des détails de l\'anime:', error);
+    }
+  };
+  
+
   return (
     <>
       <AnimeSearchForToSee onAnimeAdded={handleAnimeAdded} /> 
@@ -47,6 +78,7 @@ function AnimeToSee() {
               <div className="anime-actions">
                 <button className="trash-button" onClick={() => handleRemoveAnime(anime.name)}><i className="bi bi-trash"></i></button>
                 <button className="seen-button" onClick={() => handleMarkAsSeen(anime)}><i className="bi bi-check"></i></button>
+                <button className="in-progress-button" onClick={() => handleMoveToInProgress(anime)}><i className="bi bi-eye"></i></button>
               </div>
             </div>
           </div>

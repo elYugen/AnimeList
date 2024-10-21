@@ -12,7 +12,7 @@ function AnimeSearchForWatched({ onAnimeAdded }) {
     const storedAnimes = JSON.parse(localStorage.getItem('AnimesWatched')) || [];
     const newAnime = {
       name: anime.title,
-      image: anime.images.jpg.image_url,
+      image: anime.image,
     };
     localStorage.setItem('AnimesWatched', JSON.stringify([...storedAnimes, newAnime]));
 
@@ -43,7 +43,7 @@ function AnimeSearchForWatched({ onAnimeAdded }) {
         {results.map((anime) => (
           <div key={anime.mal_id} className="resultItem" onClick={() => handleAddToLocalStorage(anime)}>
             <h3>{anime.title}</h3>
-            <img src={anime.images.jpg.image_url} alt={anime.title} width="100" />
+            <img src={anime.image} alt={anime.title} width="100" />
           </div>
         ))}
       </div>

@@ -11,8 +11,12 @@ function AnimeSearchForToSee({ onAnimeAdded }) {
   const handleAddToLocalStorage = (anime) => {
     const storedAnimes = JSON.parse(localStorage.getItem('AnimesToSee')) || [];
     const newAnime = {
+      mal_id: anime.mal_id,
       name: anime.title,
-      image: anime.images.jpg.image_url,
+      image: anime.image || 'default-image-url.jpg',
+      total_episodes: anime.episodes || 0,
+      season: '',
+      episode: '1',
     };
     localStorage.setItem('AnimesToSee', JSON.stringify([...storedAnimes, newAnime]));
 
@@ -43,7 +47,7 @@ function AnimeSearchForToSee({ onAnimeAdded }) {
         {results.map((anime) => (
           <div key={anime.mal_id} className="resultItem" onClick={() => handleAddToLocalStorage(anime)}>
             <h3>{anime.title}</h3>
-            <img src={anime.images.jpg.image_url} alt={anime.title} width="100" />
+            <img src={anime.image} alt={anime.title} width="100" />
           </div>
         ))}
       </div>
