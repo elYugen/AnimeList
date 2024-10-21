@@ -4,20 +4,20 @@ import './AnimeWatched.css';
 
 function AnimeWatched() {
   const [animesWatched, setAnimeWatched] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const animesPerPage = 5;
 
   const loadAnimesFromStorage = () => {
     const storedAnimes = JSON.parse(localStorage.getItem('AnimesWatched')) || [];
     setAnimeWatched(storedAnimes);
   };
 
-  // Charger les animes lors du montage
   useEffect(() => {
     loadAnimesFromStorage();
   }, []);
 
-  // Fonction pour être appelée après l'ajout d'un anime
   const handleAnimeAdded = () => {
-    loadAnimesFromStorage(); // Recharge la liste depuis le localStorage
+    loadAnimesFromStorage();
   };
 
   const handleRemoveAnime = (name) => {
@@ -25,24 +25,47 @@ function AnimeWatched() {
     setAnimeWatched(updatedAnimes);
     localStorage.setItem('AnimesWatched', JSON.stringify(updatedAnimes));
   };
+
+  // Pagination logic
+  const indexOfLastAnime = currentPage * animesPerPage;
+  const indexOfFirstAnime = indexOfLastAnime - animesPerPage;
+  const currentAnimes = animesWatched.slice(indexOfFirstAnime, indexOfLastAnime);
+  const totalPages = Math.ceil(animesWatched.length / animesPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
   
   return (
     <>
       <AnimeSearchForToSee onAnimeAdded={handleAnimeAdded} />
-      {animesWatched.length > 0 ? (
-        animesWatched.map((anime) => (
+      {currentAnimes.length > 0 ? (
+        currentAnimes.map((anime) => (
           <div className="anime-item" key={anime.name}>
             <img src={anime.image} alt={anime.name} className="anime-image" />
             <div className="anime-details">
               <h3>{anime.name}</h3>
               <div className="anime-actions">
-                <button className="trash-button" onClick={() => handleRemoveAnime(anime.name)}><i className="bi bi-trash"></i></button>
+                <button className="trash-button" onClick={() => handleRemoveAnime(anime.name)}>
+                  <i className="bi bi-trash"></i>
+                </button>
               </div>
             </div>
           </div>
         ))
       ) : (
         <p>Aucun anime ajouté pour l'instant.</p>
+      )}
+
+      {/* Pagination */}
+      {animesWatched.length > animesPerPage && (
+        <div className="pagination">
+          <button onClick={() => handlePageChange(Math.max(1, currentPage - 1))} disabled={currentPage === 1} className="prevBtn"><i className="bi bi-arrow-left"></i></button>
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <button key={page} onClick={() => handlePageChange(page)} className={`pagination-number ${currentPage === page ? 'active' : ''}`}>{page}</button>
+          ))}
+          <button onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))} disabled={currentPage === totalPages} className="nextBtn"><i className="bi bi-arrow-right"></i></button>
+        </div>
       )}
     </>
   );
