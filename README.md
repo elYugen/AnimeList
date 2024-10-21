@@ -1,8 +1,4 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# AnimeList
+Cette application est pensé et faite par un fan d'anime.
+Tu ne sais pas quoi regarder ou tu as vu trop de chose ?
+L'application te propose un animé aléatoire et un animé aléatoire parmis ta liste d'animé à voir et te permet de référencer tout tes animés en cours et que tu as vu
