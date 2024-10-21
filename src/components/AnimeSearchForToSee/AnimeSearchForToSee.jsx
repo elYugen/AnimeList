@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useAnimeSearch from "../../hook/useAnimeSearch"
 import './AnimeSearchForToSee.css';
 
-function AnimeSearchForToSee() {
+function AnimeSearchForToSee({ onAnimeAdded }) {
   const [query, setQuery] = useState('');
   const { results, loading, error } = useAnimeSearch(query);
   const [isBoxVisible, setIsBoxVisible] = useState(false);
@@ -15,6 +15,12 @@ function AnimeSearchForToSee() {
       image: anime.images.jpg.image_url,
     };
     localStorage.setItem('AnimesToSee', JSON.stringify([...storedAnimes, newAnime]));
+
+    setIsBoxVisible(false);
+
+    if (onAnimeAdded) {
+      onAnimeAdded();
+    }
   };
 
   const toggleBoxVisibility = () => {

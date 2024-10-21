@@ -1,15 +1,26 @@
 import React, { useState, useEffect } from 'react';
+import AnimeSearchForToSee from '../AnimeSearchForToSee/AnimeSearchForToSee'; // Assure-toi d'importer le composant
 import './AnimeToSee.css';
 
 function AnimeToSee() {
   const [animesToSee, setAnimesToSee] = useState([]);
 
-  useEffect(() => {
+  const loadAnimesFromStorage = () => {
     const storedAnimes = JSON.parse(localStorage.getItem('AnimesToSee')) || [];
     setAnimesToSee(storedAnimes);
+  };
+
+  // Charger les animes lors du montage
+  useEffect(() => {
+    loadAnimesFromStorage();
   }, []);
 
-  const handleRemoveAnime = (name) => { // Supprime l'animé du localStorage
+  // Fonction pour être appelée après l'ajout d'un anime
+  const handleAnimeAdded = () => {
+    loadAnimesFromStorage(); // Recharge la liste depuis le localStorage
+  };
+
+  const handleRemoveAnime = (name) => {
     const updatedAnimes = animesToSee.filter((anime) => anime.name !== name);
     setAnimesToSee(updatedAnimes);
     localStorage.setItem('AnimesToSee', JSON.stringify(updatedAnimes));
@@ -17,6 +28,7 @@ function AnimeToSee() {
   
   return (
     <>
+      <AnimeSearchForToSee onAnimeAdded={handleAnimeAdded} />  {/* Passer la fonction ici */}
       {animesToSee.length > 0 ? (
         animesToSee.map((anime) => (
           <div className="anime-item" key={anime.name}>
@@ -35,6 +47,6 @@ function AnimeToSee() {
       )}
     </>
   );
-};
+}
 
 export default AnimeToSee;

@@ -16,10 +16,8 @@ function ToSee() {
             <h3>Mes animés à voir</h3>
           </div>
         </a>
-        <AnimeSearchForToSee/>
         <AnimeToSee/>
       </div>
-      <Footer/>
       </>
   );
 };
