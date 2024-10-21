@@ -124,3 +124,35 @@ select:focus {
     max-width: 600px;
     margin: 0 auto;
   }
+/* Media Queries pour les écrans d'ordinateur */
+@media (min-width: 1024px) {
+  .container {
+      max-width: 1200px;
+      margin: 40px auto;
+  }
+  .mobileContainer {
+    max-width: 1200px;
+    margin: 40px auto;
+  }
+
+  .searchContainer {
+      max-width: 800px;
+  }
+
+  .searchBar input {
+      height: 50px;
+      font-size: 18px;
+      padding-left: 50px;
+      padding-right: 50px;
+  }
+
+  .categoriesTitle h3,
+  .pagesTitle h3 {
+      font-size: 24px;
+  }
+
+  select {
+      font-size: 18px;
+      padding: 10px 16px;
+  }
+}

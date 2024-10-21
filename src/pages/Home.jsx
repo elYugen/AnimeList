@@ -9,8 +9,10 @@ function Home() {
   return (
       <>
       <Navbar/>
-      <Topbar />
-      <RandomPick />
+      <div className="mobileContainer">
+        <Topbar/>
+        <RandomPick/>
+      </div>
       <div className="container">
         <InProgress/>
         <ToSee/>
