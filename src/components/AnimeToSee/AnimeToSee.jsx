@@ -4,6 +4,8 @@ import './AnimeToSee.css';
 
 function AnimeToSee() {
   const [animesToSee, setAnimesToSee] = useState([]);
+  const [randomAnime, setRandomAnime] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
 
   const loadAnimesFromStorage = () => {
     const storedAnimes = JSON.parse(localStorage.getItem('AnimesToSee')) || [];
@@ -27,7 +29,6 @@ function AnimeToSee() {
   const handleMarkAsSeen = (anime) => {
     const watchedAnimes = JSON.parse(localStorage.getItem('AnimesWatched')) || [];
     localStorage.setItem('AnimesWatched', JSON.stringify([...watchedAnimes, anime]));
-
     handleRemoveAnime(anime.name);
   };
 
@@ -53,22 +54,33 @@ function AnimeToSee() {
         season: '', 
         episode: '1', 
       };
-  
 
       const inProgressAnimes = JSON.parse(localStorage.getItem('AnimesInProgress')) || [];
       localStorage.setItem('AnimesInProgress', JSON.stringify([...inProgressAnimes, newAnime]));
-  
 
       handleRemoveAnime(anime.name);
     } catch (error) {
       console.error('Erreur lors de la récupération des détails de l\'anime:', error);
     }
   };
-  
+
+  const handleRandomAnime = () => {
+    if (animesToSee.length > 0) {
+      const randomIndex = Math.floor(Math.random() * animesToSee.length);
+      setRandomAnime(animesToSee[randomIndex]);
+      setShowPopup(true);
+    }
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+    setRandomAnime(null);
+  };
 
   return (
     <>
-      <AnimeSearchForToSee onAnimeAdded={handleAnimeAdded} /> 
+      <AnimeSearchForToSee onAnimeAdded={handleAnimeAdded} />
+      <button className="btn" onClick={handleRandomAnime}>Quoi voir ?</button>
       {animesToSee.length > 0 ? (
         animesToSee.map((anime) => (
           <div className="anime-item" key={anime.name}>
@@ -77,7 +89,6 @@ function AnimeToSee() {
               <h3>{anime.name}</h3>
               <div className="anime-actions">
                 <button className="trash-button" onClick={() => handleRemoveAnime(anime.name)}><i className="bi bi-trash"></i></button>
-                <button className="seen-button" onClick={() => handleMarkAsSeen(anime)}><i className="bi bi-check"></i></button>
                 <button className="in-progress-button" onClick={() => handleMoveToInProgress(anime)}><i className="bi bi-eye"></i></button>
               </div>
             </div>
@@ -85,6 +96,17 @@ function AnimeToSee() {
         ))
       ) : (
         <p>Aucun anime ajouté pour l'instant.</p>
+      )}
+
+      {/* Pop-up pour afficher l'anime aléatoire */}
+      {showPopup && randomAnime && (
+        <div className="popup-overlay">
+          <div className="popup">
+            <button className="close-popup" onClick={closePopup}>✖️</button>
+            <img src={randomAnime.image} alt={randomAnime.name} className="popup-image" />
+            <p>Tu devrais regarder <strong>{randomAnime.name}</strong> maintenant</p>
+          </div>
+        </div>
       )}
     </>
   );

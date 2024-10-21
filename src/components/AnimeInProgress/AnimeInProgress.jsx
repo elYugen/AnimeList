@@ -24,6 +24,13 @@ function AnimeInProgress() {
     localStorage.setItem('AnimesInProgress', JSON.stringify(updatedAnimes));
   };
 
+  const handleMarkAsSeen = (anime) => {
+    const watchedAnimes = JSON.parse(localStorage.getItem('AnimesWatched')) || [];
+    localStorage.setItem('AnimesWatched', JSON.stringify([...watchedAnimes, anime]));
+
+    handleRemoveAnime(anime.name);
+  };
+
   const handleEpisodeChange = (name, episode) => {
     const updatedAnimes = animesInProgress.map((anime) => {
       if (anime.name === name) {
@@ -56,9 +63,8 @@ function AnimeInProgress() {
                   ))}
                 </select>
                 </div>
-                <button className="trash-button" onClick={() => handleRemoveAnime(anime.name)}>
-                  <i className="bi bi-trash"></i>
-                </button>
+                <button className="trash-button" onClick={() => handleRemoveAnime(anime.name)}><i className="bi bi-trash"></i></button>
+                <button className="seen-button" onClick={() => handleMarkAsSeen(anime)}><i className="bi bi-check"></i></button>
               </div>
             </div>
           </div>
