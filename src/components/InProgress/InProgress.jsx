@@ -24,8 +24,8 @@ function InProgress() {
       </Link>
       <section className="inProgress">
         {animesInProgress.length > 0 ? (
-          animesInProgress.map((anime) => (
-            <div className="inProgressCard" key={anime.mal_id}>
+          animesInProgress.map((anime, index) => (
+            <div className="inProgressCard" key={index}>
               <div className="inProgressCardImage">
                 <img src={anime.image} alt={anime.name} />
               </div>

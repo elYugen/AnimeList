@@ -12,7 +12,7 @@ function Topbar() {
         <h3>What To See Now</h3>
       </div>
       <div className="topbarPicture">
-        <i class="bi bi-bell"></i>
+        <i className="bi bi-bell"></i>
       </div>
     </div>
     </>

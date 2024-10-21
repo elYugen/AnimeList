@@ -9,21 +9,24 @@ function RandomPick() {
   if (error) return <p>Erreur: {error}</p>;
 
   const truncateText = (text, limit) => {
-    if (!text) return ''; // Retourne une chaîne vide si text est null ou undefined
+    if (!text) return '';
     return text.length > limit ? text.slice(0, limit) + '...' : text;
   };
 
   const handleAddToLocalStorage = (anime) => {
     const storedAnimes = JSON.parse(localStorage.getItem('AnimesToSee')) || []; 
     const newAnime = {
+      mal_id: anime.mal_id,
       name: anime.title,
       image: anime.image || 'default-image-url.jpg',
       total_episodes: anime.episodes || 0,
       season: '',
-      episode: '1',
+      episodes: '1',
     };
+    console.log("Nouvel anime ajouté:", newAnime);
+
     localStorage.setItem('AnimesToSee', JSON.stringify([...storedAnimes, newAnime]));
-    alert(`${anime.title} a été ajouté à la liste "À regarder"!`); // Alerte pour confirmation
+    alert(`${anime.title} a été ajouté à la liste "À voir" !`); 
   };
 
   return (

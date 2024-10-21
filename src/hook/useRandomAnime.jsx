@@ -18,6 +18,9 @@ const useRandomAnime = () => {
           title: data.data.title,
           image: data.data.images.jpg.large_image_url,
           synopsis: data.data.synopsis,
+          episodes: data.data.episodes || 1, 
+          seasons: data.data.seasons || 1, 
+          mal_id: data.data.mal_id 
         };
         setAnime(randomAnime);
       } catch (error) {
