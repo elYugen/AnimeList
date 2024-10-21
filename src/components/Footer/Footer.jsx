@@ -51,7 +51,7 @@ function Footer() {
             <i className="bi bi-github"></i>
           </a>
         </h1>
-        <h5>v2024.10.1</h5>
+        <h5>v2024.10.17</h5>
       </div>
     </>
   );
