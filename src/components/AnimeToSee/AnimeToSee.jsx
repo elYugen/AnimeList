@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import AnimeSearchForToSee from '../AnimeSearchForToSee/AnimeSearchForToSee'; // Assure-toi d'importer le composant
+import AnimeSearchForToSee from '../AnimeSearchForToSee/AnimeSearchForToSee'; 
 import './AnimeToSee.css';
 
 function AnimeToSee() {
@@ -25,10 +25,19 @@ function AnimeToSee() {
     setAnimesToSee(updatedAnimes);
     localStorage.setItem('AnimesToSee', JSON.stringify(updatedAnimes));
   };
+
+  const handleMarkAsSeen = (anime) => {
+    // Ajouter l'anime à AnimesWatched
+    const watchedAnimes = JSON.parse(localStorage.getItem('AnimesWatched')) || [];
+    localStorage.setItem('AnimesWatched', JSON.stringify([...watchedAnimes, anime]));
+
+    // Supprimer l'anime de AnimesToSee
+    handleRemoveAnime(anime.name);
+  };
   
   return (
     <>
-      <AnimeSearchForToSee onAnimeAdded={handleAnimeAdded} />  {/* Passer la fonction ici */}
+      <AnimeSearchForToSee onAnimeAdded={handleAnimeAdded} /> 
       {animesToSee.length > 0 ? (
         animesToSee.map((anime) => (
           <div className="anime-item" key={anime.name}>
@@ -37,7 +46,7 @@ function AnimeToSee() {
               <h3>{anime.name}</h3>
               <div className="anime-actions">
                 <button className="trash-button" onClick={() => handleRemoveAnime(anime.name)}><i className="bi bi-trash"></i></button>
-                <button className="seen-button"><i className="bi bi-check"></i></button>
+                <button className="seen-button" onClick={() => handleMarkAsSeen(anime)}><i className="bi bi-check"></i></button>
               </div>
             </div>
           </div>

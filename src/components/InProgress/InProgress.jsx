@@ -5,7 +5,7 @@ import './InProgress.css';
 function InProgress() {
   return (
     <>
-    <Link to="d">
+    <Link to="inprogress">
     <div className="categoriesTitle">
       <h3>En cours de visionnage</h3>
       <h3><i className="bi bi-arrow-right"></i></h3>

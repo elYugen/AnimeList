@@ -5,6 +5,7 @@ import './assets/css/styles.css'
 import Watched from './pages/Watched'
 import ToSee from "./pages/ToSee";
 import Layout from "./pages/Layout";
+import InProgress from "./pages/InProgress";
 
 function App() {
   // Titre de la page
@@ -18,6 +19,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="home" element={<Home />} />
           <Route path="tosee" element={<ToSee />} />
+          <Route path="watched" element={<Watched/>} />
+          <Route path="inprogress" element={<InProgress/>} />
           {/* <Route path="*" element={<NoPage />} /> */}
         </Route>
       </Routes>
