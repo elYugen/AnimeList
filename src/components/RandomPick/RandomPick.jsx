@@ -4,7 +4,7 @@ import './RandomPick.css';
 
 function RandomPick() {
   const { anime, loading, error } = useRandomAnime();
-  if (loading) return <img src="loading.gif" style={{display: "flex", justifyContent: "center",width: "50px"}} alt="Chargement" />;
+  if (loading) return <div className="loading"><img src="loading.gif" style={{width: "50px"}} alt="Chargement" /></div>;
   if (error) return <p>Erreur: {error}</p>;
 
   const truncateText = (text, limit) => {

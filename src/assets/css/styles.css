@@ -24,6 +24,19 @@ a {
     padding-bottom: 60px;
 }
 
+.loading {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.categoriesTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .categoriesTitle h3 {
   font-weight: 400;
 }

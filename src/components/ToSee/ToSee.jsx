@@ -1,11 +1,11 @@
 import React from 'react';
-import './InProgress.css';
+import './ToSee.css';
 
-function InProgress() {
+function ToSee() {
   return (
     <>
     <div className="categoriesTitle">
-      <h3>En cours de visionnage</h3>
+      <h3>A voir</h3>
       <h3><i class="bi bi-arrow-right"></i></h3>
     </div>
     <section className="inProgress">
@@ -13,33 +13,15 @@ function InProgress() {
         <div className="inProgressCardImage">
           <img src="https://placehold.co/150x200" alt="AnimeName"/>
         </div>
-        <div className="inProgressTitle">
-          <p>Titre</p>
-        </div>
-        <div className="inProgressRecap">
-          <p>Saison 1, Episode 1</p>
-        </div>
       </div>
       <div className="inProgressCard">
         <div className="inProgressCardImage">
           <img src="https://placehold.co/150x200" alt="AnimeName"/>
         </div>
-        <div className="inProgressTitle">
-          <p>Titre</p>
-        </div>
-        <div className="inProgressRecap">
-          <p>Saison 1, Episode 1</p>
-        </div>
       </div>
       <div className="inProgressCard">
         <div className="inProgressCardImage">
           <img src="https://placehold.co/150x200" alt="AnimeName"/>
-        </div>
-        <div className="inProgressTitle">
-          <p>Titre</p>
-        </div>
-        <div className="inProgressRecap">
-          <p>Saison 1, Episode 1</p>
         </div>
       </div>
     </section>
@@ -47,4 +29,4 @@ function InProgress() {
   );
 };
 
-export default InProgress;
+export default ToSee;

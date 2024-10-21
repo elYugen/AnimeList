@@ -1,0 +1,14 @@
+.Footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1px;
+}
+.Footer a {
+  color: white;
+}
+
+.Footer h5 {
+  margin-top: -10px;
+}

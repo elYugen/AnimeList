@@ -9,12 +9,15 @@ function App() {
   document.title = "AnimeList";
 
   return (
+    <>
     <BrowserRouter>
       <Routes>
           <Route index element={<Home />} />
+          <Route path="home" element={<Home />} />
           {/* <Route path="*" element={<NoPage />} /> */}
       </Routes>
     </BrowserRouter>
+    </>
   )
 }
 
