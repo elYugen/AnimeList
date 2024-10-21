@@ -1,12 +1,13 @@
 import Topbar from "../components/Topbar/Topbar";
 import RandomPick from "../components/RandomPick/RandomPick"
+import InProgress from "../components/InProgress/InProgress"
 function Home() {
   return (
       <>
       <Topbar />
       <RandomPick />
       <div className="container">
-        <h3>Mes Animés En Cours</h3>
+        <InProgress/>
       </div>
       </>
   );
