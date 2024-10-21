@@ -8,6 +8,12 @@ function AnimeToSee() {
     const storedAnimes = JSON.parse(localStorage.getItem('AnimesToSee')) || [];
     setAnimesToSee(storedAnimes);
   }, []);
+
+  const handleRemoveAnime = (name) => { // Supprime l'animé du localStorage
+    const updatedAnimes = animesToSee.filter((anime) => anime.name !== name);
+    setAnimesToSee(updatedAnimes);
+    localStorage.setItem('AnimesToSee', JSON.stringify(updatedAnimes));
+  };
   
   return (
     <>
@@ -18,8 +24,8 @@ function AnimeToSee() {
             <div className="anime-details">
               <h3>{anime.name}</h3>
               <div className="anime-actions">
-                <button className="trash-button"><i class="bi bi-trash"></i></button>
-                <button className="seen-button"><i class="bi bi-check"></i></button>
+                <button className="trash-button" onClick={() => handleRemoveAnime(anime.name)}><i className="bi bi-trash"></i></button>
+                <button className="seen-button"><i className="bi bi-check"></i></button>
               </div>
             </div>
           </div>
