@@ -7,10 +7,10 @@ function Navbar() {
     <>
     <nav className="navbar">
       <ul className="navbarItem">
-        <li className="navbarLink navbarLinkActive"><Link to="home"><i className="bi bi-house"></i> Accueil</Link></li>
-        <li className="navbarLink"><Link to="#"><i className="bi bi-calendar-event"></i> En cours</Link></li>
-        <li className="navbarLink"><Link to="#"><i className="bi bi-eye"></i> A voir</Link></li>
-        <li className="navbarLink"><Link to="#"><i className="bi bi-tv"></i> Terminé</Link></li>
+        <li className="navbarLink navbarLinkActive"><a href="/"><i className="bi bi-house"></i> Accueil</a></li>
+        <li className="navbarLink"><a href="#"><i className="bi bi-calendar-event"></i> En cours</a></li>
+        <li className="navbarLink"><a href="tosee"><i className="bi bi-eye"></i> A voir</a></li>
+        <li className="navbarLink"><a href="#"><i className="bi bi-tv"></i> Terminé</a></li>
         
       </ul>
     </nav>
