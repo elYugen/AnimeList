@@ -29,8 +29,8 @@ function AnimeWatched() {
 
   const indexOfLastAnime = currentPage * animesPerPage;
   const indexOfFirstAnime = indexOfLastAnime - animesPerPage;
-  const currentAnimes = animesInProgress.slice(indexOfFirstAnime, indexOfLastAnime);
-  const totalPages = Math.ceil(animesInProgress.length / animesPerPage);
+  const currentAnimes = animesWatched.slice(indexOfFirstAnime, indexOfLastAnime);
+  const totalPages = Math.ceil(animesWatched.length / animesPerPage);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
