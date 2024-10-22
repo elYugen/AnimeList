@@ -8,6 +8,7 @@ function AnimeToSee() {
   const [showPopup, setShowPopup] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const animesPerPage = 5;
+  const maxPageWindow = 5;
 
   const loadAnimesFromStorage = () => {
     const storedAnimes = JSON.parse(localStorage.getItem('AnimesToSee')) || [];
@@ -79,15 +80,17 @@ function AnimeToSee() {
     setRandomAnime(null);
   };
 
-  // Pagination logic
   const indexOfLastAnime = currentPage * animesPerPage;
   const indexOfFirstAnime = indexOfLastAnime - animesPerPage;
-  const currentAnimes = animesToSee.slice(indexOfFirstAnime, indexOfLastAnime);
-  const totalPages = Math.ceil(animesToSee.length / animesPerPage);
+  const currentAnimes = animesInProgress.slice(indexOfFirstAnime, indexOfLastAnime);
+  const totalPages = Math.ceil(animesInProgress.length / animesPerPage);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  const startPage = Math.max(1, currentPage - Math.floor(maxPageWindow / 2));
+  const endPage = Math.min(totalPages, startPage + maxPageWindow - 1);
 
   return (
     <>
@@ -113,12 +116,18 @@ function AnimeToSee() {
       {/* Pagination */}
       {animesToSee.length > animesPerPage && (
         <div className="pagination">
-          <button onClick={() => handlePageChange(Math.max(1, currentPage - 1))} disabled={currentPage === 1} className="prevBtn"><i className="bi bi-arrow-left"></i></button>
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-            <button key={page} onClick={() => handlePageChange(page)} className={`pagination-number ${currentPage === page ? 'active' : ''}`}>{page}</button>
-          ))}
-          <button onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))} disabled={currentPage === totalPages} className="nextBtn"><i className="bi bi-arrow-right"></i></button>
-        </div>
+        <button onClick={() => handlePageChange(Math.max(1, currentPage - 1))} disabled={currentPage === 1} className="prevBtn">
+          <i className="bi bi-arrow-left"></i>
+        </button>
+
+        {Array.from({ length: (endPage - startPage + 1) }, (_, i) => startPage + i).map((page) => (
+          <button key={page} onClick={() => handlePageChange(page)} className={`pagination-number ${currentPage === page ? 'active' : ''}`}>{page}</button>
+        ))}
+
+        <button onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))} disabled={currentPage === totalPages} className="nextBtn">
+          <i className="bi bi-arrow-right"></i>
+        </button>
+      </div>
       )}
 
       {/* Pop-up pour afficher l'anime aléatoire */}
